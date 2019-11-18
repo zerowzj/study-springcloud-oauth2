@@ -1,6 +1,7 @@
-package study.springcloud.oauth2.auth;
+package study.springcloud.oauth2.auth.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -18,13 +19,13 @@ public class AuthServerCfg extends AuthorizationServerConfigurerAdapter {
 
         // 配置两个客户端，一个用于password认证一个用于client认证
         clients.inMemory().withClient("client_1")
-                .resourceIds(Utils.RESOURCEIDS.ORDER)
+//                .resourceIds(Utils.RESOURCEIDS.ORDER)
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("select")
                 .authorities("oauth2")
                 .secret(finalSecret)
                 .and().withClient("client_2")
-                .resourceIds(Utils.RESOURCEIDS.ORDER)
+//                .resourceIds(Utils.RESOURCEIDS.ORDER)
                 .authorizedGrantTypes("password", "refresh_token")
                 .scopes("server")
                 .authorities("oauth2")
