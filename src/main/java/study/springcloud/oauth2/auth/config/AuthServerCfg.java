@@ -34,9 +34,9 @@ public class AuthServerCfg extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(new MyRedisTokenStore(redisConnectionFactory))
-                .authenticationManager(authenticationManager)
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+//        endpoints.tokenStore(new MyRedisTokenStore(redisConnectionFactory))
+//                .authenticationManager(authenticationManager)
+//                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
     }
 
     @Override
