@@ -1,0 +1,19 @@
+#
+server:
+  port: 7030
+#
+logging:
+  config: classpath:logback.xml
+#
+spring:
+  application:
+    name: study-springcloud-zuul
+
+### 注册中心配置 ###
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://114.67.102.8:7010/eureka/
