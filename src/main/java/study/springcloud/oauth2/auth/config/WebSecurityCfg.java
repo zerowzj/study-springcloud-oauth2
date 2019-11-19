@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
-@EnableWebSecurity
 public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
     @Bean
