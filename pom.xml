@@ -97,15 +97,14 @@
                 <executions>
                     <execution>
                         <id>default</id>
-                        <!--如果package时不想用docker打包,就注释掉这个goal-->
                         <goals>
                             <goal>build</goal>
-                            <!--                            <goal>tag</goal>-->
                             <goal>push</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
+                    <contextDirectory>${project.basedir}</contextDirectory>
                     <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
                     <!--镜像仓库-->
                     <repository>${docker.image.prefix}/${project.artifactId}</repository>
