@@ -9,7 +9,7 @@ spring:
   application:
     name: study-springcloud-oauth2
 ####################
-# Eureka
+#（★）Eureka
 ####################
 eureka:
   instance:
