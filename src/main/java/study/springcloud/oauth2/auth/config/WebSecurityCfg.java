@@ -17,7 +17,6 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         return manager;
     }
 
-
     @Bean
     @Override
     protected UserDetailsService userDetailsService() {
@@ -34,6 +33,4 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("admin").password("admin").roles("USER", "ADMIN");
     }
-
-
 }
