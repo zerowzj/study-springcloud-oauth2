@@ -49,6 +49,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         http.requestMatchers().anyRequest()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/**").permitAll();
+                .antMatchers("/oauth/**")
+                .permitAll();
     }
 }
