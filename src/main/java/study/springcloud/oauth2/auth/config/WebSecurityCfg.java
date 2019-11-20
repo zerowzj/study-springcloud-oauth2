@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
+    /**
+     * 认证管理器
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -18,6 +21,9 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         return manager;
     }
 
+    /**
+     * 用户信息服务
+     */
     @Bean
     @Override
     protected UserDetailsService userDetailsService() {
@@ -30,9 +36,9 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("hui.wang").password("hui.wang").roles("USER")
-                .and()
-                .withUser("admin").password("admin").roles("USER", "ADMIN");
+                .withUser("hui.wang")
+                .password("hui.wang")
+                .roles("USER");
     }
 
     /**
