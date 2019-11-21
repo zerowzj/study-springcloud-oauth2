@@ -29,15 +29,11 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 //客户端id和秘钥
                 .withClient("client_id")
                 .secret("{noop}client_secret")
-                //支持的授权模式：授权类型，密码，客户端凭证
-                .authorizedGrantTypes("authorization_code", "password", "refresh_token", "client_credentials")
+                //支持的授权模式：授权码、密码、客户端凭证
+                .authorizedGrantTypes("authorization_code", "password", "client_credentials")
                 //定义访问作用域，也就是当用户使用某一个scope授权之后，可以根据不同的scope封装不同的user信息，
                 //比如webclient会封装角色，mobileclient封装角色和资源api，由开发人员定义即可
-                .scopes("webclient", "mobileclient")
-                .redirectUris("http://www.baidu.com")
-                .accessTokenValiditySeconds(1200)
-                .refreshTokenValiditySeconds(50000);
-        super.configure(client);
+                .scopes("webclient", "mobileclient");
     }
 
     /**
@@ -46,15 +42,13 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        //使用默认的验证管理器和用户信息服务
-        endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
+          endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
-        super.configure(endpoints);
     }
 
     /**
-     * 111
+     *
      * 1. 用来配置令牌端点(Token Endpoint)的安全约束
      */
     @Override
