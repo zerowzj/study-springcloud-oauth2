@@ -40,7 +40,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("wang")
-                .password("{noop}123").roles("USER");
+                .password("{noop}123").authorities("USER");
     }
 
     /**
