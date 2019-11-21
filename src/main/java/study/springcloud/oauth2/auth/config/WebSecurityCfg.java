@@ -34,6 +34,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
     /**
      * 定义用户名 密码和角色
+     * 1.
+     * 2.
      */
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,13 +47,15 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
     /**
      * HttpSecurity中配置所有请求的安全验证
+     * 1.
+     * 2.
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().anyRequest()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**")
-                .permitAll();
+//        http.requestMatchers().anyRequest()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/oauth/**")
+//                .permitAll();
     }
 }

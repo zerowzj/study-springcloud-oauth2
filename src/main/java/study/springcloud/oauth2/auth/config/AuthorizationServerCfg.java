@@ -26,14 +26,16 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     @Override
     public void configure(ClientDetailsServiceConfigurer client) throws Exception {
         client.inMemory()
+                //客户端id和秘钥
                 .withClient("client_id")
                 .secret("client_secret")
                 //支持的授权模式
-                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
+                .authorizedGrantTypes("client_credentials")
                 //定义访问作用域，也就是当用户使用某一个scope授权之后，
                 //可以根据不同的scope封装不同的user信息，
                 //比如webclient会封装角色，mobileclient封装角色和资源api，由开发人员定义即可
                 .scopes("webclient", "mobileclient");
+//        client.withClientDetails();
     }
 
     /**
