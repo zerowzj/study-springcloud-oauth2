@@ -6,7 +6,6 @@ import org.springframework.security.oauth2.provider.ClientRegistrationException;
 
 public class CustomClientDetailsService implements ClientDetailsService {
 
-    @Override
     public ClientDetails loadClientByClientId(String s) throws ClientRegistrationException {
         return null;
     }
