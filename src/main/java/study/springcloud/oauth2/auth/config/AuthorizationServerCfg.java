@@ -52,5 +52,4 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         super.configure(security);
     }
-
 }
