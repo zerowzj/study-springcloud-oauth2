@@ -27,29 +27,30 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     protected UserDetailsService userDetailsService() {
-        return super.userDetailsService();
+        UserDetailsService detailsService = super.userDetailsService();
+        return detailsService;
     }
 
     /**
      * 定义用户名 密码和角色
      */
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("hui.wang")
-                .password("hui.wang")
-                .roles("USER");
-    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("hui.wang")
+//                .password("hui.wang")
+//                .roles("USER");
+//    }
 
     /**
      * HttpSecurity中配置所有请求的安全验证
      */
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().anyRequest()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**")
-                .permitAll();
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.requestMatchers().anyRequest()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/oauth/**")
+//                .permitAll();
+//    }
 }

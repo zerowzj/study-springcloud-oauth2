@@ -31,7 +31,7 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 //定义访问作用域，也就是当用户使用某一个scope授权之后，
                 // 可以根据不同的scope封装不同的user信息，
                 // 比如webclient会封装角色，mobileclient封装角色和资源api，由开发人员定义即可
-                .scopes("select");
+                .scopes("webclient", "mobileclient");
     }
 
     /**
