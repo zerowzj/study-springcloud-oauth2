@@ -2,11 +2,13 @@ package study.springcloud.oauth2.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 @Configuration
 public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter {
@@ -28,11 +30,14 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 .withClient("client_id")
                 .secret("{noop}client_secret")
                 //支持的授权模式：授权类型，密码，客户端凭证
-                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
-                //定义访问作用域，也就是当用户使用某一个scope授权之后，
-                //可以根据不同的scope封装不同的user信息，
+                .authorizedGrantTypes("authorization_code", "password", "refresh_token", "client_credentials")
+                //定义访问作用域，也就是当用户使用某一个scope授权之后，可以根据不同的scope封装不同的user信息，
                 //比如webclient会封装角色，mobileclient封装角色和资源api，由开发人员定义即可
-                .scopes("webclient", "mobileclient");
+                .scopes("webclient", "mobileclient")
+                .redirectUris("http://www.baidu.com")
+                .accessTokenValiditySeconds(1200)
+                .refreshTokenValiditySeconds(50000);
+        super.configure(client);
     }
 
     /**
@@ -42,16 +47,18 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         //使用默认的验证管理器和用户信息服务
-        endpoints.authenticationManager(authenticationManager)
+        endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
+                .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
+        super.configure(endpoints);
     }
 
     /**
      * 111
      * 1. 用来配置令牌端点(Token Endpoint)的安全约束
      */
-//    @Override
-//    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-//        super.configure(security);
-//    }
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        super.configure(security);
+    }
 }

@@ -1,4 +1,4 @@
-package study.springcloud.oauth2.auth.detailservice;
+package study.springcloud.oauth2.auth.details;
 
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
