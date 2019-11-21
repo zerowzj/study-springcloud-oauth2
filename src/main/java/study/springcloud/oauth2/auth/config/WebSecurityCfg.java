@@ -39,10 +39,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("wang")
-                .password("{noop}123123")
-                .roles("USER");
+                .password("{noop}123").roles("USER");
     }
 
     /**
