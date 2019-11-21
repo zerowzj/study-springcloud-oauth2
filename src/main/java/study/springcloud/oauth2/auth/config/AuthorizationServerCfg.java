@@ -1,14 +1,22 @@
 package study.springcloud.oauth2.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.oauth2.config.annotation.builders.ClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetails;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.client.BaseClientDetails;
+import org.springframework.security.oauth2.provider.client.InMemoryClientDetailsService;
+
+import java.util.Map;
 
 @Configuration
 public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter {
@@ -17,6 +25,8 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private ClientDetailsService clientDetailsService;
 
     /**
      * 客户端配置
@@ -56,4 +66,20 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 .checkTokenAccess("isAuthenticated()")
                 .allowFormAuthenticationForClients();
     }
+
+//    @Bean
+//    public ClientDetailsService clientDetails() {
+//        InMemoryClientDetailsService inMemoryClientDetailsService = new InMemoryClientDetailsService();
+//        Map<String, ClientDetails> clientDetailsStore = new HashMap<>();
+//
+//        BaseClientDetails clientDetails =  new BaseClientDetails("test_client", "",
+//                "all", "implicit,authorization_code", "ROLE_USER,ROLE_TRUSTED_CLIENT","http://localhost:8081/client1/login,http://localhost:8082/client2/login");
+//
+//        clientDetails.setClientSecret(passwordEncoder.encode("test_client"));
+//        clientDetailsStore.put("test_client",clientDetails);
+//
+//        inMemoryClientDetailsService.setClientDetailsStore(clientDetailsStore);
+//
+//        return inMemoryClientDetailsService;
+//    }
 }
